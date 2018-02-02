@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	   <bean id="s" class="si.mp.le2.Super">          
+	   <constructor-arg>
+	     <ref bean="otg"/>
+	   </constructor-arg>   
+		<property name="money">                          
+	    <ref bean="m" />
+	</property>		
+	</bean>
+	    <bean id="m" class="si.mp.le2.Money">
+		<property name="amt" value="1000">
+    </property>    
+	</bean>
+	    <bean id="ns" class="si.mp.le2.Nongsim">
+	    <property name="foodName" value="너구리">
+	</property>    
+	</bean>
+	    <bean id="otg" class="si.mp.le2.Otugi">
+	    <property name="foodName" value="오뚜기">
+	</property>
+    </bean>
+</beans>
