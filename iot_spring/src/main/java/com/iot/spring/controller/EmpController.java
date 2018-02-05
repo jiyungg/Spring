@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.iot.spring.service.EmpService;
 import com.iot.spring.vo.Emp;
@@ -31,16 +32,20 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String insertEmp(
-			@Valid Emp empDTO, Errors es,
-			Model m) {
-		
+	public ModelAndView insertEmp(
+			@Valid Emp emp, Errors es,
+			ModelAndView m) throws Exception {
+		log.info("insert result => {} ", emp);
 		if(es.hasErrors()) {
 			log.info("error =>{}", es);
-			m.addAttribute("errorMsg", es.getAllErrors());
-			return "error/error";
+			throw new Exception(es.getAllErrors().get(0).getDefaultMessage());
 		}
-		log.info("insert ruselt => {} ", empDTO);
-		return "emp/write";
-	}	
+		m.setViewName("emp/wriwe");
+		return m;
+	} 
+	public static void main(String[] args) {
+		String str = "'empSal 필드에서 'emp'객체의 필드 오류 : 거부된 값 : [abc]";
+		System.out.println(str.length());
+	}
 }
+

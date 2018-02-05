@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>${title}</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-	한글
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<a href="${root}/emp/list">사원리스트</a>
 </body>
 </html>

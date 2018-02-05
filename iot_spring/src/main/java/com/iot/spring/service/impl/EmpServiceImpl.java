@@ -11,32 +11,32 @@ import com.iot.spring.vo.Emp;
 
 @Service
 public class EmpServiceImpl implements EmpService {
-	@Autowired
-	private EmpDAO edao;
-	
-	@Override
-	public List<Emp> getEmpList() {
-		return edao.selectEmpList();
-	}
+   @Autowired
+   private EmpDAO edao;
+   
+   @Override
+   public List<Emp> getEmpList() {
+      return edao.selectEmpList();
+   }
 
-	@Override
-	public Emp getEmp() {
-		return null;
-	}
+@Override
+public Emp getEmp() {
+	return null;
+}
 
-	@Override
-	public int insertEmp() {
-		return 0;
-	}
+@Override
+public int insertEmp() {
+	return 0;
+}
 
-	@Override
-	public int updateEmp() {
-		return 0;
-	}
+@Override
+public int updateEmp() {
+	return 0;
+}
 
-	@Override
-	public int deleteEmp() {
-		return 0;
-	}
+@Override
+public int deleteEmp() {
+	return 0;
+}
 
 }

@@ -6,9 +6,10 @@ import com.iot.spring.vo.Emp;
 
 public interface EmpDAO {
 
-	public List<Emp> selectEmpList();	
-	public Emp selectEmp();
-	public int insertEmp();
-	public int updateEmp();
-	public int deleteEmp();
+   public List<Emp> selectEmpList();   
+   public Emp selectEmp(Emp emp);
+   public int insertEmp(Emp emp);
+   public int updateEmp(Emp emp);
+   public int deleteEmp(Emp emp);
+   
 }
