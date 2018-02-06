@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iot.spring.service.EmpService;
@@ -30,6 +31,12 @@ public class EmpController {
 		m.addAttribute("emplist", empList);
 		return "emp/jstl_list";
 	}
+
+	@RequestMapping(value="/lista", method=RequestMethod.GET)
+	public @ResponseBody List<Emp> getEmpListAjax(Model m) {
+		List<Emp>empList = es.getEmpList();
+		return empList;
+	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public ModelAndView insertEmp(
@@ -40,7 +47,7 @@ public class EmpController {
 			log.info("error =>{}", es);
 			throw new Exception(es.getAllErrors().get(0).getDefaultMessage());
 		}
-		m.setViewName("emp/wriwe");
+		m.setViewName("emp/write");
 		return m;
 	} 
 	public static void main(String[] args) {
