@@ -2,25 +2,13 @@
  * 
  */
 
-function pageMove(param){
-	if(param){
-		document.getElementById("urlStr").value = param;
-		$("#urlForm").submit();
-	}else{
-		alert("url을 입력해주세요.");
-	}
-}
-
-function urlSubmit(f){
-	return true;
-}
 
 var AjaxUtilDx = function (url, dxObj, type, dataType){
 	if(!url){
 		alert("url정보가 없습니다.");
 		return null;
 	}
-	this.url = "/exam/" + url;
+	this.url = url;
 	var initData = {};
 	
 	if(dxObj && dxObj instanceof window.dhtmlXForm){

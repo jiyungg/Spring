@@ -1,6 +1,7 @@
 package com.iot.spring.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,17 +26,17 @@ public Emp getEmp() {
 }
 
 @Override
-public int insertEmp() {
+public int insertEmp(Map<String, String>map) {
+	return edao.insertEmp(map);
+}
+
+@Override
+public int updateEmp(Map<String, String>map) {
 	return 0;
 }
 
 @Override
-public int updateEmp() {
-	return 0;
-}
-
-@Override
-public int deleteEmp() {
+public int deleteEmp(Map<String, String>map) {
 	return 0;
 }
 

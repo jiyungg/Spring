@@ -1,6 +1,8 @@
 package com.iot.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -21,21 +23,25 @@ import com.iot.spring.vo.Emp;
 @Controller
 @RequestMapping("/emp")
 public class EmpController {
-	private static final Logger log = LoggerFactory.getLogger(UrlController.class);
+	private static final Logger log = LoggerFactory.getLogger(EmpController.class);
 	@Autowired
 	private EmpService es;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String getEmpList(Model m) {
 		List<Emp>empList = es.getEmpList();
-		m.addAttribute("emplist", empList);
+		m.addAttribute("empList", empList);
 		return "emp/jstl_list";
 	}
 
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
-	public @ResponseBody List<Emp> getEmpListAjax(Model m) {
+	public @ResponseBody Map<String,Object> getEmpListAjax(Model m){
 		List<Emp>empList = es.getEmpList();
-		return empList;
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		returnMap.put("empList1", empList);
+		returnMap.put("empList2", empList);
+		returnMap.put("msg", "리스트 조회가 정상적으로 성공하였습니다.");
+		return returnMap;
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
@@ -50,9 +56,5 @@ public class EmpController {
 		m.setViewName("emp/write");
 		return m;
 	} 
-	public static void main(String[] args) {
-		String str = "'empSal 필드에서 'emp'객체의 필드 오류 : 거부된 값 : [abc]";
-		System.out.println(str.length());
-	}
 }
 
