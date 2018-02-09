@@ -23,11 +23,10 @@
 		where uiid = #{uiId}
 	</select>
 
-	<insert id="insertUser" parameterType="map">
-		insert into
-		user_info(uiname,uiid,uipwd,uiemail,admin)
-		values(#{uiName},#{uiId},#{uiPwd},#{uiEmail},#{admin})
-	</insert>
+	<insert id="insertUser" parameterType="ui">
+      insert into user_info(uino,uiname,uiid,uipwd,uiemail,admin)
+      values (#{uiNo},#{uiName},#{uiId},#{uiPwd},#{uiEmail},#{admin})
+   </insert>
 	
 	<delete id="deleteUser" parameterType="map">
 		delete from user_info where uino = #{uino}

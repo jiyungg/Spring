@@ -4,9 +4,73 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <title>${title}</title>
 </head>
+<style>
+   div#winVP {
+      position: relative;
+      height: 100%;
+      border: 1px solid #dfdfdf;
+      margin: 10px;
+   }
+</style>
+<script>
+   var winF,popW;
+   $(document).ready(function(){
+      winF = new dhtmlXWindows();
+      winF.attachViewportTo("winVP");
+      popW = winF.createWindow("win1",20,30,320,300);
+      //popW.hide(); 
+      popW.button("close").hide();
+      popW.button("minmax").hide();
+      popW.button("park").hide();
+      popW.setText("Login"); 
+
+      winF.window("win1").centerOnScreen();
+      winF.window("win1").denyMove();
+      winF.window("win1").denyResize();
+      var formObj = [
+                 {type:"settings", offsetTop:12,name:"connectionInfo",labelAlign:"left"},
+               {type:"input",name:"uiId", label:"아이디 : ",required:true},
+               {type:"input",name:"uiPwd", label:"비밀번호 : ",required:true},
+               {type: "block", blockOffset: 0, list: [
+                  {type: "button", name:"saveBtn",value: "로그인"},
+                  {type: "newcolumn"},
+                  {type: "button", name:"cancelBtn",value: "취소"},
+                  {type: "newcolumn"},
+                  {type: "button", name:"SignupBtn",value: "회원가입"}
+               ]}
+         ];
+      var form = popW.attachForm(formObj,true);
+      
+      form.attachEvent("onButtonClick",function(id){
+         if(id=="saveBtn"){
+            if(form.validate()){
+               form.send("${root}/user/login", "post",callback);
+            }
+         }else if(id=="cancelBtn"){
+            form.clear();
+         }else if(id=="signupBtn"){
+        	 location.href="${pPath}/user/signup";
+         }
+      });
+   });
+   
+   function callback(loader, res){
+	   if(loader.xmlDoc.status==200){
+		   var res = JSON.parse(res);
+		   alert(res.msg);
+		   if(res.loginOk){
+			   location.href="${root}/path/db/main";
+		   }
+	   }else{
+		   console.log(res);
+	   }
+   }
+   
+</script>
 <body>
-<a href="${root}/emp/list">사원리스트</a>
+   <div id="winVP"></div>
 </body>
 </html>

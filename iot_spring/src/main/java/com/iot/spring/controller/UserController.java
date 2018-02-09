@@ -22,22 +22,31 @@ import com.iot.spring.vo.UserInfoVO;
 public class UserController {
 	@Autowired
 	private UserService us;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	
-	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> login(@Valid UserInfoVO ui, HttpSession hs){
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> login(@Valid UserInfoVO ui, HttpSession hs) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		ui=us.getUserInfo(ui);
-		map.put("result",false);
-		map.put("msg","로그인 실패");
-		if(ui!=null) {
+		ui = us.getUserInfo(ui);
+		map.put("result", false);
+		map.put("msg", "로그인 실패");
+		if (ui != null) {
 			hs.setAttribute("user", ui);
 			hs.setAttribute("isLogin", true);
 			map.put("msg", "로그인 성공");
 			map.put("loginOk", true);
-		}		
+		}
 		return map;
 	}
-}
 
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	   public @ResponseBody Map<String, Object> signUp(@Valid UserInfoVO ui, HttpSession hs) {
+	      
+	      Map<String, Object> map = new HashMap<String,Object>();
+	    
+	      us.insertUser(map, ui);
+	      
+	      return map;
+	   }
+}

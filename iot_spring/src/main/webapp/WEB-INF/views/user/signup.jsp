@@ -35,12 +35,12 @@ div#winVP {
                {type:"password",name:"uiPwd", label:"비밀번호 : ",required:true},
                {type:"input",name:"uiName", label:"이름 : ",required:true},
                {type:"input",name:"uiEmail", label:"이메일 : ",required:true},
-               {type:"radio", label:"관리자권한 : ",checked:"0", list:[
+               {type:"radio", name:"admin",label:"관리자권한 : ",checked:true, list:[
                    {type:"radio", name:"admin", value:"1",label:"예", checked: true},
                    {type:"radio", name:"admin", value:"0",label:"아니오",
-   }],
-               {type: "block", blockOffset: 0, list: [
-                  {type: "button", name:"saveBtn",value: "회원가입"},
+   }]},
+               {type: "block", blockOffset: 0, list:[
+      			{type: "button", name:"saveBtn",value: "회원가입"},
                   {type: "newcolumn"},
                   {type: "button", name:"cancelBtn",value: "취소"},
                   {type: "newcolumn"},
@@ -53,6 +53,7 @@ div#winVP {
          if(id=="saveBtn"){
             if(form.validate()){
                form.send("${root}/user/signup","post",callback);
+               
             }
          }else if(id=="cancelBtn"){
             form.clear();
@@ -66,8 +67,8 @@ div#winVP {
 	   if(loader.xmlDoc.status==200){
 		   var res = JSON.parse(res);
 		   alert(res.msg);
-		   if(res.loginOk){
-			   location.href="${root}/path/db/main";
+		   if(res.signupOk){
+			   location.href="${root}/";
 		   }
 	   }else{
 		   console.log(res);

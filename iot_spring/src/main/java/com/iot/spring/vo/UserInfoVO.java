@@ -3,11 +3,11 @@ package com.iot.spring.vo;
 public class UserInfoVO {
 	
 	private int uiNo;
-	private String UiName;
-	private String UiId;
-	private String UiPwd;
-	private String UiEmail;
-	private char admin;
+	private String uiName;
+	private String uiId;
+	private String uiPwd;
+	private String uiEmail;
+	private int admin;
 	
 	public int getUiNo() {
 		return uiNo;
@@ -16,38 +16,40 @@ public class UserInfoVO {
 		this.uiNo = uiNo;
 	}
 	public String getUiName() {
-		return UiName;
+		return uiName;
 	}
 	public void setUiName(String uiName) {
-		UiName = uiName;
+		this.uiName = uiName;
 	}
 	public String getUiId() {
-		return UiId;
+		return uiId;
 	}
 	public void setUiId(String uiId) {
-		UiId = uiId;
+		this.uiId = uiId;
 	}
 	public String getUiPwd() {
-		return UiPwd;
+		return uiPwd;
 	}
 	public void setUiPwd(String uiPwd) {
-		UiPwd = uiPwd;
+		this.uiPwd = uiPwd;
 	}
 	public String getUiEmail() {
-		return UiEmail;
+		return uiEmail;
 	}
 	public void setUiEmail(String uiEmail) {
-		UiEmail = uiEmail;
+		this.uiEmail = uiEmail;
 	}
-	public char getAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
-	public void setAdmin(char admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 	@Override
 	public String toString() {
-		return "UserInfo [uiNo=" + uiNo + ", UiName=" + UiName + ", UiId=" + UiId + ", UiPwd=" + UiPwd + ", UiEmail="
-				+ UiEmail + ", admin=" + admin + "]";
+		return "UserInfoVO [uiNo=" + uiNo + ", uiName=" + uiName + ", uiId=" + uiId + ", uiPwd=" + uiPwd + ", uiEmail="
+				+ uiEmail + ", admin=" + admin + "]";
 	}
+	
+	
 }

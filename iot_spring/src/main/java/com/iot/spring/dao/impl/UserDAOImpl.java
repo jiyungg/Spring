@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
 		ss.close();
 		return result;
 	}
-
+	 
 	@Override
 	public int checkUserInfo(UserInfoVO ui) {
 		final SqlSession ss = ssf.openSession();
