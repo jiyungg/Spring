@@ -1,11 +1,9 @@
 package com.iot.spring.vo;
 
 public class Emp {
-	
 	private int empNo;
 	private String empName;
 	private int empSal;
-	
 	public int getEmpNo() {
 		return empNo;
 	}

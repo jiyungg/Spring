@@ -13,37 +13,41 @@ import com.iot.spring.vo.Emp;
 
 @Repository
 public class EmpDAOImpl implements EmpDAO {
-   @Autowired
-   private SqlSessionFactory ssf;
+	@Autowired
+	private SqlSessionFactory ssf;
+	
+	@Override
+	public List<Emp> selectEmpList() {
+		SqlSession ss = ssf.openSession();
+		List<Emp> empList = ss.selectList("emp.selectEmp");
+		ss.close();
+		return empList;
+	}
 
-   @Override
-   public List<Emp> selectEmpList() {
-      SqlSession ss = ssf.openSession();
-      List<Emp> empList = ss.selectList("emp.selectEmp");
-      ss.close();
-      return empList;
-   }
+	@Override
+	public Emp selectEmp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-   @Override
-   public Emp selectEmp() {
-      return null;
-   }
+	@Override
+	public int insertEmp(Map<String, String>map) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.insert("emp.insertEmp", map);
+		ss.close();
+		return result;
+	}
 
-   @Override
-   public int insertEmp(Map<String, String>map) {
-	  SqlSession ss = ssf.openSession();
-	  int result = ss.insert("emp.insertEmp", map);
-	  ss.close();
-      return result;
-   }
+	@Override
+	public int updateEmp(Map<String, String>map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-   @Override
-   public int updateEmp(Map<String, String>map) {
-      return 0;
-   }
+	@Override
+	public int deleteEmp(Map<String, String>map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-   @Override
-   public int deleteEmp(Map<String, String>map) {
-      return 0;
-   }
 }

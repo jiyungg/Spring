@@ -29,32 +29,30 @@ public class EmpController {
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String getEmpList(Model m) {
-		List<Emp>empList = es.getEmpList();
+		List<Emp> empList = es.getEmpList();
 		m.addAttribute("empList", empList);
 		return "emp/jstl_list";
 	}
 
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
-	public @ResponseBody Map<String,Object> getEmpListAjax(Model m){
-		List<Emp>empList = es.getEmpList();
+	public @ResponseBody Map<String,Object> getEmpListAjax(Model m) {
+		List<Emp> empList = es.getEmpList();
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		returnMap.put("empList1", empList);
 		returnMap.put("empList2", empList);
 		returnMap.put("msg", "리스트 조회가 정상적으로 성공하였습니다.");
 		return returnMap;
 	}
-	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public ModelAndView insertEmp(
-			@Valid Emp emp, Errors es,
+			@Valid Emp emp,Errors es,
 			ModelAndView m) throws Exception {
-		log.info("insert result => {} ", emp);
+		log.info("insert result => {} " , emp);
 		if(es.hasErrors()) {
 			log.info("error =>{}", es);
 			throw new Exception(es.getAllErrors().get(0).getDefaultMessage());
 		}
 		m.setViewName("emp/write");
 		return m;
-	} 
+	}
 }
-

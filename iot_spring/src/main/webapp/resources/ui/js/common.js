@@ -2,7 +2,6 @@
  * 
  */
 
-
 var AjaxUtilDx = function (url, dxObj, type, dataType){
 	if(!url){
 		alert("url정보가 없습니다.");
@@ -88,8 +87,6 @@ var AjaxUtil = function (url, params, type, dataType){
 		alert(this.param);
 	}
 	this.type = type?type:"POST";
-	//type = get 방식인지 아닌지 보는 것.
-	//안들어왔다면 자동으로 post라고 나오게 해놓는다는 뜻.
 	this.dataType = dataType?dataType:"json";
 	this.callbackSuccess = function(json){
     	var url = json.url;
@@ -106,14 +103,13 @@ var AjaxUtil = function (url, params, type, dataType){
 	this.setCallbackSuccess = function(callback){
 		this.callbackSuccess = callback;
 	}
-	
 	this.send = function(){
 		$.ajax({ 
 	        type     : this.type
 	    ,   url      : this.url
 	    ,   dataType : this.dataType 
 	    ,   beforeSend: function(xhr) {
-	        xhr.setRequestHeader("Accept", "application/json");
+	        xhr.setRequestHeader("Content-Type", "application/json");
 	    }
 	    ,   data     : encodeURIComponent(this.param)
 	    ,   success : this.callbackSuccess
@@ -126,34 +122,3 @@ var AjaxUtil = function (url, params, type, dataType){
 	}
 }
 
-
-function mdel(mid){
-	if(confirm("삭제하시겠습니까?")){
-		$("#mode").val("del");
-		$("#userid").val(mid);
-		var au = new AjaxUtil("/user/userlistaction","it_mode,it_userid");
-		au.setCallbackSuccess(returnDel);
-		au.send();
-	}
-}
-function returnDel(list){
-	var url = list.url;
-	var data = list.data;
-	var msg = list.msg;
-	alert(msg);
-	pageMove(url);
-}
-function sess_chg(ids, vals){
-	if(confirm("권한을 설정하시겠습니까?")){
-		$("#userid").val(ids);
-		$("#role").val(vals);
-		var au = new AjaxUtil("/exam/user/sessionRegi","userid,role");
-		au.setCallbackSuccess(returnSession);
-		au.send();
-	}
-}
-function returnSession(result){
-	var url = result.url;
-	alert("설정되었습니다.");
-	pageMove(url);
-}

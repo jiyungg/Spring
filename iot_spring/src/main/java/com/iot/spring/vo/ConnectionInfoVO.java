@@ -1,7 +1,6 @@
 package com.iot.spring.vo;
 
 public class ConnectionInfoVO {
-	
 	private int ciNo;
 	private String ciName;
 	private String ciUrl;
@@ -10,7 +9,6 @@ public class ConnectionInfoVO {
 	private String ciUser;
 	private String ciPwd;
 	private String ciEtc;
-	
 	public int getCiNo() {
 		return ciNo;
 	}
@@ -63,5 +61,5 @@ public class ConnectionInfoVO {
 	public String toString() {
 		return "ConnectionInfoVO [ciNo=" + ciNo + ", ciName=" + ciName + ", ciUrl=" + ciUrl + ", ciPort=" + ciPort
 				+ ", ciDatabase=" + ciDatabase + ", ciUser=" + ciUser + ", ciPwd=" + ciPwd + ", ciEtc=" + ciEtc + "]";
-	}	
+	}
 }

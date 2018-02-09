@@ -14,6 +14,5 @@
 <button>사원정보 추가</button>
 <a href="${root}/emp/list"><button type="button">리스트돌아가기</button></a>
 </form:form>
-</form>
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.iot.spring.vo.Emp;
 
-public interface EmpService {	
+public interface EmpService {
 	public List<Emp> getEmpList();
 	public Emp getEmp();
 	public int insertEmp(Map<String, String>map);

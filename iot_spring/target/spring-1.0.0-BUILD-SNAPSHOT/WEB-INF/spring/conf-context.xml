@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+	
 	<context:property-placeholder location="classpath:/dbconf.properties"/>
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driver}"/>
@@ -20,17 +21,23 @@
 		<property name="maxIdle" value="${max}"></property>
 		<property name="maxWaitMillis" value="${wait}"></property>
 	</bean>
-	<bean class="com.iot.spring.dao.impl.NaverTransDAOImpl">
-	    <property name="url" value="https://openapi.naver.com/v1/language/translate"/>
-	    <property name="contentType" value="application/x-www-form-urlencoded; charset=UTF-8"/>
-	    <property name="clientId" value="ZANMzXrPI8FUtOvAhajd"/>
-	    <property name="clientSecret" value="OM4GAAmEqR"/>
-	    <property name="source" value="en"/>
-	    <property name="target" value="ko"/>
-	</bean>
-	
-	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	  <property name="dataSource" ref="ds" />
 	  <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+	</bean>
+	
+	<bean id="translateDAO" class="com.iot.spring.dao.impl.TranslateDAOImpl">
+		<property name="url" value="https://openapi.naver.com/v1/language/translate"/>
+		<property name="contentType" value="application/x-www-form-urlencoded; charset=UTF-8"></property>
+		<property name="clientId" value="PPzE6AulijIdSvRmJ1Mg"/>
+		<property name="clientSecret" value="gPB08e6FBr"/>
+		<property name="source" value="en"/>
+		<property name="target" value="ko"/>
+	</bean>
+	
+	<!-- <bean id="logAspect" class="com.iot.spring.common.aspect.LogAspect"/> -->
+	<bean class="org.codehaus.jackson.map.ObjectMapper"/>
+	<bean id="mav" class="org.springframework.web.servlet.ModelAndView">
+		<constructor-arg value="error/error"></constructor-arg>
 	</bean>
 </beans>
