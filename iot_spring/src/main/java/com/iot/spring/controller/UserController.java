@@ -41,12 +41,18 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	   public @ResponseBody Map<String, Object> signUp(@Valid UserInfoVO ui, HttpSession hs) {
-	      
-	      Map<String, Object> map = new HashMap<String,Object>();
-	    
-	      us.insertUser(map, ui);
-	      
+	   public @ResponseBody Map<String, Object> signUp(@Valid UserInfoVO ui, HttpSession hs) {	      
+	      Map<String, Object> map = new HashMap<String,Object>();	    
+	      us.insertUser(map, ui);	      
 	      return map;
 	   }
+	
+	@RequestMapping(value = "/userlist", method = RequestMethod.POST)
+	   public @ResponseBody Map<String, Object> userList(@Valid UserInfoVO ui, HttpSession hs) {	    
+		Map<String, Object> map = new HashMap<String,Object>();
+		us.updateUser(map, ui);
+		us.deleteUser(map, ui);
+		us.selectUser(map, ui);
+		return map;	
+	}	
 }

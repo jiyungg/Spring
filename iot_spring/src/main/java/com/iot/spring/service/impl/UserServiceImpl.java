@@ -12,13 +12,13 @@ import com.iot.spring.vo.UserInfoVO;
 @Service
 public class UserServiceImpl implements UserService {
 
-	
+
 	@Autowired
 	private UserDAO udao;
-	
+
 	@Override
 	public UserInfoVO getUserInfo(UserInfoVO ui) {
-		return udao.selectUserInfo(ui);		
+		return udao.selectUserInfo(ui);      
 	}
 
 	private boolean isDuplUserInfo(UserInfoVO ui) {
@@ -29,16 +29,35 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public void insertUser(Map<String, Object> rMap, UserInfoVO ui) {
-			rMap.put("msg", "회원가입이 실패하였습니다.");
-			rMap.put("signupOk", false);
+		rMap.put("msg", "회원가입이 실패하였습니다.");
+		rMap.put("signupOk", false);
 		if(isDuplUserInfo(ui)) {
 			rMap.put("msg", ui.getUiId() + "는 이미 존재하는 아이디입니다.");
 			return;
-		}		
+		}      
 		int result = udao.insertUser(ui);
 		if(result==1) {
 			rMap.put("msg", "회원가입이 성공하였습니다.");
 			rMap.put("signupOk", true);
-		}		
+		}      
+	}
+
+	@Override
+	public void updateUser(Map<String, Object> rMap, UserInfoVO ui) {
+		rMap.put("msg", "수정에 성공하였습니다.");
+		rMap.put("updateOk", true);
+		udao.updateUserInfo(ui);
+	}
+
+	@Override
+	public void deleteUser(Map<String, Object> rMap, UserInfoVO ui) {
+		rMap.put("msg", "삭제에 성공하였습니다.");
+		rMap.put("deleteOk", true);
+		udao.deleteUserInfo(ui);
+	}
+
+	@Override
+	public void selectUser(Map<String, Object> rMap, UserInfoVO ui) {
+		this.udao = udao;
 	}
 }

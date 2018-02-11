@@ -10,9 +10,18 @@ import com.iot.spring.vo.UserInfoVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	
+
 	@Autowired
 	SqlSessionFactory ssf;
+
+
+	@Override
+	public int insertUser(UserInfoVO ui) {
+		final SqlSession ss = ssf.openSession();
+		int result = ss.insert("user.insertUser", ui);
+		ss.close();
+		return result;
+	}
 
 	@Override
 	public UserInfoVO selectUserInfo(UserInfoVO ui) {
@@ -23,18 +32,35 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int insertUser(UserInfoVO ui) {
-		final SqlSession ss = ssf.openSession();
-		int result = ss.insert("user.insertUser", ui);
-		ss.close();
-		return result;
-	}
-	 
-	@Override
 	public int checkUserInfo(UserInfoVO ui) {
 		final SqlSession ss = ssf.openSession();
-		int result = ss.selectOne("user.checkUser",ui);
+		int sUi = ss.selectOne("user.checkUser",ui); 
 		ss.close();
-		return result;
+		return sUi;
+	}
+
+	@Override
+	public void updateUserInfo(UserInfoVO ui) {
+		final SqlSession ss = ssf.openSession();
+		try {
+			int uUi = ss.update("user.updateUser",ui);
+		}
+		finally {
+			ss.commit();
+			ss.close();
+		}
+		
+	}
+
+	@Override
+	public void deleteUserInfo(UserInfoVO ui) {
+		final SqlSession ss = ssf.openSession();
+		try {
+			ss.delete("user.deleteUser",ui);
+		}
+		finally {
+			ss.commit();
+			ss.close();
+		}
 	}
 }

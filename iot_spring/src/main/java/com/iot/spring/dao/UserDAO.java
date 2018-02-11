@@ -5,11 +5,11 @@ import java.util.Map;
 import com.iot.spring.vo.UserInfoVO;
 
 public interface UserDAO {
-	
-	UserInfoVO selectUserInfo(UserInfoVO ui);
-	int insertUser(UserInfoVO ui);
-	int checkUserInfo(UserInfoVO ui);
-
+   
+   public int insertUser(UserInfoVO ui);
+   UserInfoVO selectUserInfo(UserInfoVO ui);
+   public void deleteUserInfo(UserInfoVO ui);
+   public void updateUserInfo(UserInfoVO ui);   
+   public int checkUserInfo(UserInfoVO ui);
 
 }
-

@@ -14,12 +14,16 @@
 <link rel="stylesheet" type="text/css" href="${rPath}/ui/css/bootstrap-table.css${ver}"/>
 <link rel="stylesheet" type="text/css" href="${rPath}/dx/fonts/font_roboto/roboto.css${ver}"/>
 <link rel="stylesheet" type="text/css" href="${rPath}/dx/dhtmlx.css${ver}"/>
+<link rel="stylesheet" type="text/css" href="${rPath}/ui/css/freelancer.css${ver}"/>
+<link rel="stylesheet" type="text/css" href="${rPath}/ui/css/freelancer.min.css${ver}"/>
 <script src="${rPath}/ui/js/jquery.min.js${ver}"></script>
 <script src="${rPath}/ui/js/grid-obj.js${ver}"></script>
 <script src="${rPath}/ui/js/bootstrap.min.js${ver}"></script>
 <script src="${rPath}/ui/js/common.js${ver}"></script>
 <script src="${rPath}/ui/js/bootstrap-table.js${ver}"></script>
 <script src="${rPath}/dx/dhtmlx.js${ver}" charset="utf-8"></script>
+<script src="${rPath}/ui/js/freelancer.js${ver}"></script>
+<script src="${rPath}/ui/js/freelancer.min.js${ver}"></script>
 <!-- Chrome, Safari, IE -->
 <link rel="shortcut icon" href="${rPath}/imgs/favicon.png">
 <!-- Firefox, Opera (Chrome and Safari say thanks but no thanks) -->

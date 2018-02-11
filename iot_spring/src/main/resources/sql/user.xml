@@ -27,6 +27,26 @@
       insert into user_info(uino,uiname,uiid,uipwd,uiemail,admin)
       values (#{uiNo},#{uiName},#{uiId},#{uiPwd},#{uiEmail},#{admin})
    </insert>
+   
+   <update id="updateUser" parameterType="ui">
+      update user_info
+      <if test="uiname!=null">
+        set uiname = #{uiName}
+        where uino = #{uiNo}
+      </if>
+      <if test="uiid!=null">
+        set uiid = #{uiId}
+        where uino = #{uiNo}
+      </if>
+      <if test="uipwd!=null">
+        set uipwd = #{uiPwd}
+        where uino = #{uiNo}
+      </if>
+      <if test="uiemail!=null">
+        set uiemail = #{uiEmail}
+        where uino = #{uiNo}
+      </if>     
+   </update>
 	
 	<delete id="deleteUser" parameterType="map">
 		delete from user_info where uino = #{uino}

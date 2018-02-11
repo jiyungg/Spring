@@ -30,7 +30,7 @@ div#winVP {
       winF.window("win1").denyMove();
       winF.window("win1").denyResize();
       var formObj = [
-                 {type:"settings", offsetTop:12,name:"connectionInfo",labelAlign:"left"},
+               {type:"settings", offsetTop:12,name:"connectionInfo",labelAlign:"left"},
                {type:"input",name:"uiId", label:"아이디 : ",required:true},
                {type:"password",name:"uiPwd", label:"비밀번호 : ",required:true},
                {type:"input",name:"uiName", label:"이름 : ",required:true},
@@ -40,15 +40,15 @@ div#winVP {
                    {type:"radio", name:"admin", value:"0",label:"아니오",
    }]},
                {type: "block", blockOffset: 0, list:[
-      			{type: "button", name:"saveBtn",value: "회원가입"},
+      		   {type: "button", name:"saveBtn",value: "회원가입"},
                   {type: "newcolumn"},
                   {type: "button", name:"cancelBtn",value: "취소"},
                   {type: "newcolumn"},
                   {type: "button", name:"SignupBtn",value: "돌아가기"}
                ]}
          ];
-      var form = popW.attachForm(formObj,true);
       
+      var form = popW.attachForm(formObj,true);      
       form.attachEvent("onButtonClick",function(id){
          if(id=="saveBtn"){
             if(form.validate()){
